@@ -36,41 +36,74 @@ No universo das APIs, usamos diferentes tipos de requisição HTTP para represen
 ---
 <br/>
 
-## Configuração do projeto ⚙️
+## Conhecendo a Entidade - Banda 🎶
 
-Antes de criar qualquer coisa, precisamos configurar um novo projeto, aqui está o passo a passo:
+Antes de mostrar a banda ao mundo, precisamos estruturar bem os integrantes da Link Park-AI. Cada integrante será representado por uma **entidade**, e vai conter as seguintes características:
 
-1. Acesse o site [https://start.spring.io/](https://start.spring.io/)
+- `nome` — Nome do integrante  
+- `dataEntrada` — Data em que entrou na banda  
+- `idade` — Idade atual do integrante  
+- `papel` — O papel dele na banda (ex: vocalista, guitarrista, baterista...)  
 
-2. Configure o projeto com as seguintes opções:
-   - **Projeto**: Maven
-   - **Linguagem**: Java
-   - **Versão do Spring Boot**: 3.4.4
-   - **Grupo**: `school`
-   - **Artifact**: `sptech`
-   - **Name**: `LinkBoot`
-   - **Descrição**: `Meu projeto pessoal em Springboot`
-   - **Package name**: `school.sptech`
-   - **Packaging**: Jar
-   - **Java**: 21
+**Importante:** Cada integrante deve ter **apenas um** papel!
 
-3. Dependências utilizadas:
-   - Spring Web
-   - Spring Data JPA
-   - H2 Database
-   - Validation
-
-4. Após gerar o projeto, extraia os arquivos do `.zip` dentro do repositório:  
-   [https://github.com/GuilhemeBorin/LinkBoot.git](https://github.com/GuilhemeBorin/LinkBoot.git)
-
-5. **Atenção!**  
-   A pasta `.git` **deve estar na mesma raiz** dos arquivos `src`, `pom.xml` e outros arquivos principais do projeto.  
-   Isso garante que seu projeto está versionado corretamente com o Git e pronto para ser usado no GitHub.
-
-<br/>
-<br/>
+Se você achar que existe alguma outra característica legal de se guardar sobre os membros da banda, fique à vontade para propor e adicionar. Afinal, criar é parte do processo!
 
 ---
 <br/>
 
-**Quando finalizar, suba o novo projeto para o GitHub com o commit: `add: estrutura projeto spring` e aguarde os próximos passos!☝️🤓**
+## Estrutura de Projeto 📦
+
+Durante o projeto, vamos utilizar uma estrutura de pacotes comum em aplicações Spring Boot.  
+Ela ajuda a manter o código organizado e cada parte com sua responsabilidade:
+
+- `controller`: onde ficam os endpoints da aplicação.
+- `service`: onde acontece a lógica de negócio.
+- `repository`: responsável por interagir com o banco de dados.
+- `entity`: representa as tabelas do banco, ou seja, nossos "objetos do mundo real".
+- `dto`: carrega apenas os dados necessários para entrada e saída de informações.
+- `mapper`: faz a conversão entre `entity` e `dto`.
+- `exception`: tratamento de erros personalizado (iremos usar mais pra frente).
+
+---
+<br/>
+
+## Configuração Inicial do Projeto ⚙️
+
+Com as informações acima em mente, é hora de colocar a mão na massa!  
+Sua próxima missão é estruturar o esqueleto do projeto — sem lógica ainda, apenas a base.  
+
+**O que você precisa criar:**
+
+- Todos os **pacotes** listados anteriormente (`controller`, `service`, etc.)
+- Uma **classe para cada pacote** (já com as ligações de uma a outra)
+- A **classe da entidade** `Banda`, com os atributos listados acima
+- A **classe Mapper** (por enquanto vazia)
+
+> Lembre-se: Não crie DTOs nem regras de negócio ainda — o foco é só na estrutura!
+
+---
+<br/>
+
+## Ligando o Banco ao Spring🎲
+### application.properties
+
+Dentro do seu arquivo `application.properties`, no pacote `resources`, adicione as configurações abaixo:
+
+```properties
+# permite o acesso ao H2 Console: http://localhost:8080/h2-console
+spring.h2.console.enabled=true
+
+# configura o banco de dados H2 em memória
+spring.datasource.url=jdbc:h2:mem:banco
+
+# permite que o banco seja criado/atualizado automaticamente
+spring.jpa.hibernate.ddl-auto=update
+```
+
+Essas configurações são fundamentais para conseguirmos testar o projeto localmente e garantir que o banco em memória funcione direitinho.
+
+---
+<br/>
+
+**Quando finalizar, suba o novo projeto para o GitHub com o commit: `feat: pacotes e classes para projeto / fix: application properties` e aguarde os próximos passos!☝️🤓**
