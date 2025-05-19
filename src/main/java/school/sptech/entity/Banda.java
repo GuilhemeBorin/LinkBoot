@@ -1,8 +1,6 @@
 package school.sptech.entity;
 
 import jakarta.persistence.*;
-
-import javax.print.attribute.standard.DateTimeAtCompleted;
 import java.time.LocalDate;
 
 @Entity
@@ -18,7 +16,6 @@ public class Banda {
     private LocalDate dataEntrada;
 
     private Integer idade;
-
 
     private String papel;
 

@@ -1,8 +1,11 @@
 package school.sptech.controller;
 
-import school.sptech.entity.Banda;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import school.sptech.service.BandaService;
 
+@RestController
+@RequestMapping("/banda")
 public class BandaController {
 
     private final BandaService bandaService;
